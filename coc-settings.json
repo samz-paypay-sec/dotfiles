@@ -1,5 +1,3 @@
 {
-  "http.proxyStrictSSL": false,
-  "volar.takeOverMode.enabled": true,
-  "tsserver.enable": false
+  "http.proxyStrictSSL": false
 }
