@@ -71,7 +71,6 @@ syntax off
 call plug#begin('~/.vim/plugged')
   Plug 'morhetz/gruvbox'
 
-  Plug 'preservim/nerdcommenter'
   Plug 'preservim/nerdtree'
   Plug 'google/vim-searchindex'
 
@@ -101,6 +100,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
   " neovim
+  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+  Plug 'numToStr/Comment.nvim'
 call plug#end()
 
 set background=dark
@@ -128,13 +129,6 @@ let g:prettier#config#trailing_comma = 'es5'
 " let g:prettier#config#bracket_spacing = 'true'
 " nnoremap gp :silent %!prettier --no-config --stdin --stdin-filepath % --trailing-comma all --single-quote<CR>
 
-" NerdCommenter
-let g:NERDDefaultAlign = 'left'
-let g:NERDSpaceDelims = 1
-nmap <C-_> <Plug>NERDCommenterToggle
-vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
-nmap <C-/> <Plug>NERDCommenterToggle
-vmap <C-/> <Plug>NERDCommenterToggle<CR>gv
 
 " GitGutter
 let g:gitgutter_map_keys = 0
@@ -163,3 +157,17 @@ let g:user_emmet_leader_key = '<C-K>'
 
 " built in editorconfig
 let g:editorconfig = v:false
+
+" JoosepAlviste/nvim-ts-context-commentstring
+lua << EOF
+require('ts_context_commentstring').setup {
+  enable_autocmd = false,
+}
+EOF
+
+" numToStr/Comment.nvim
+lua << EOF
+require('Comment').setup {
+  pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+}
+EOF
