@@ -66,6 +66,9 @@ set noswapfile
 " use treesitter
 syntax off
 
+" copy current file path
+command CopyPath let @* = expand("%")
+
 " ----------*---------- ----------*---------- ----------*---------- "
 
 call plug#begin('~/.vim/plugged')
@@ -102,6 +105,7 @@ call plug#begin('~/.vim/plugged')
   " neovim
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'numToStr/Comment.nvim'
+  Plug 'danymat/neogen'
 call plug#end()
 
 set background=dark
@@ -170,4 +174,9 @@ lua << EOF
 require('Comment').setup {
   pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
 }
+EOF
+
+" danymat/neogen
+lua << EOF
+require('neogen').setup {}
 EOF
