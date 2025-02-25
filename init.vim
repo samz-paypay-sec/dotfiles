@@ -106,6 +106,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'numToStr/Comment.nvim'
   Plug 'danymat/neogen'
+  Plug 'davidmh/mdx.nvim'
 call plug#end()
 
 set background=dark
@@ -179,4 +180,9 @@ EOF
 " danymat/neogen
 lua << EOF
 require('neogen').setup {}
+EOF
+
+" davidmh/mdx.nvim
+lua << EOF
+require('mdx').setup {}
 EOF
